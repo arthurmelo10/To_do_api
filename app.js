@@ -29,11 +29,25 @@ app.post('/todos', async (request, response) => {
 });
 
 app.put('/todos/:id', async (request, response) => {
-
+    const {id} = request.params;
+    const payload = request.body
+    try{
+        const updateToDo = await Todo.findByIdAndUpdate(id, payload, {new: true});
+        response.status(200).json(updateToDo); 
+    } catch (error){
+        response.status(500).json({msg: 'ServerError', error})
+    }
 });
 
 app.delete('/todos/:id', async (request, response) => {
+    const {id} = request.params
 
+    try{
+        const deleteTodo = await Todo.findOneAndDelete(id);
+        response.status(200).json(deleteTodo);
+    } catch (error) {
+        response.status(500).json({msg:'ServerError', error})
+    }
 });
 
 app.listen(PORT, () => console.log(`Server listen on port ${PORT}`)); 
