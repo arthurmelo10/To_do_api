@@ -1,10 +1,13 @@
 const express = require('express'); // importar express
+const cors = require('cors')
 
 const Todo = require('./models/Todo'); // importar modelo
 
 require('./config/db.config'); // conexão banco de dados
 
 const app = express()
+
+app.use(cors())
 
 const PORT = 5000
 
