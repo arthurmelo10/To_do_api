@@ -8,7 +8,8 @@ const todoSchema = new Schema (
         completed: {
             type: Boolean,
             default: false
-        }
+        },
+        user: {type: Schema.Types.ObjectId},
     },    
     {   
         timestamps: true
